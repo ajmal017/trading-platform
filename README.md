@@ -4,7 +4,7 @@ FOR EDUCATIONAL PURPOSES ONLY.
 
 This project is just a proof-of-concept about automated trading platform (for robot, EA - Expert Advisor) on The Stock Exchange of Thailand. On 2013, there is no broker that provides automated trading method to (poor) individual investors, only institutional investors can take the advantage. The platform allows individual investors/traders automatically send buy/sell orders to the market when the securities prices match up with their pre-conditions.
 
-![Trading Platform](https://lh3.googleusercontent.com/GiK8c7z1wn31McAtrAcV-dwu7zu3vMrz3Hhfcw8-I3MD56yuAcFhpznBQpQ6PRwcdoKErnD5=w800-h571)
+![Trading Platform](https://lh3.googleusercontent.com/Dnd8s8GJI1uXf0DQPZbt8NgOO4hO7l53tzKbSalVXmITuu4uL47KvdosXp6CtLa1yqIEGRPU=w800-h571)
 
 The project consists of 5 modules,
 
