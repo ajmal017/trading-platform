@@ -1,0 +1,14 @@
+h2 One Does Not Simply Log into Mordor
+
+= form_tag '/', class: 'form-horizontal', role: 'form' do
+	.form-group
+		= label_tag :username, nil, class: 'col-sm-2 control-label'
+		.col-sm-3
+			= password_field_tag :username, nil, class: 'form-control'
+	.form-group
+		= label_tag :password, nil, class: 'col-sm-2 control-label'
+		.col-sm-3
+			= password_field_tag :password, nil, class: 'form-control'
+	.form-group
+		.col-sm-offset-2.col-sm-10
+			= submit_tag 'Log in', class: 'btn btn-danger'

@@ -1,0 +1,30 @@
+h2 Step Trades
+
+- if flash[:notice]
+  div class="alert alert-success"
+    = flash[:notice]
+
+= form_tag step_trades_path, :class => 'form-inline' do
+  div.inline-item
+    span.first = text_field_tag :symbol, nil, {:class => 'symbol input-medium', :placeholder => 'Symbol'}
+    span = submit_tag 'Add', :class => 'btn btn-success'
+
+- unless @step_trades.empty?
+  table class="table table-bordered table-condensed table-striped" style="width:70%"
+    tr
+      th style="width:25%" Symbol
+      th Volume
+      th Max Step
+      th Current Step
+      th Ref. Buy
+      th Ref. Sell
+      th
+    - @step_trades.each do |step|
+      tr
+        td = step.symbol
+        td = step.volume
+        td = step.max_step
+        td = step.current_step
+        td = '%.2f' % step.ref_buy
+        td = '%.2f' % step.ref_sell
+        td = link_to 'Edit', show_step_trade_path(step.symbol)

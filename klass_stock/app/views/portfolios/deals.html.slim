@@ -1,0 +1,37 @@
+h1 Deals
+- unless @deals.empty?
+  table class="table table-bordered table-condensed table-striped"
+    tr
+      th Symbol
+      th Bought
+      th Cost
+      th Sold
+      th Price
+      th Volume
+      th
+        span data-toggle="tooltip" title="included trading fee"
+          | % P/L<span style="color:red">*</span>
+      th style="width:11%"
+        span data-toggle="tooltip" title="included trading fee"
+          | Real. P/L<span style="color:red">*</span>
+    - @deals.each do |deal|
+      tr
+        td = link_to deal.symbol, "/portfolios/#{@portfolio.id}/deals/#{deal.symbol}"
+        td = deal.bought_at
+        td = deal.bought_price
+        td = deal.sold_at
+        td = deal.sold_price
+        td = deal.volume
+        td = deal.percent_pl
+        td.right = deal.realized_pl
+
+  = paginate @pages
+
+- else
+  tr
+    td colspan="8" Threre are no deals.
+
+javascript:
+  (function(){
+    $("[data-toggle='tooltip']").tooltip();
+  })();

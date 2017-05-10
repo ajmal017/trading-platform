@@ -1,0 +1,30 @@
+h2 Step Trade
+
+- if flash[:alert]
+  div class="alert alert-error"
+    = flash[:alert]
+
+= form_tag show_step_trade_path(@step_trade.symbol), :class => 'form-inline' do
+  table style="width:85%;margin-bottom:15px"
+    tr
+      th Symbol
+      th Volume
+      th Max Step
+      th Current Step
+      th Ref. Buy
+      th Ref. Sell
+      th
+    tr
+      td = text_field_tag :new_symbol, @step_trade.symbol, :class => 'symbol input-medium', :placeholder => 'Symbol'
+      td = text_field_tag :volume, @step_trade.volume, :class => 'input-small', :placeholder => 'Volume'
+      td = text_field_tag :max_step, @step_trade.max_step, :class => 'input-small', :placeholder => 'Max'
+      td = text_field_tag :current_step, @step_trade.current_step, :class => 'input-small', :placeholder => 'Current'
+      td = text_field_tag :ref_buy, @step_trade.ref_buy, :class => 'input-small', :placeholder => 'Ref. Buy'
+      td = text_field_tag :ref_sell, @step_trade.ref_sell, :class => 'input-small symbol', :placeholder => 'Ref. Sell'
+      td class="checkbox"
+        = check_box_tag :active, 'true', @step_trade.active
+        = label_tag :active
+
+  div.inline-item
+    span.first = submit_tag "Update", :class => 'btn btn-success'
+    span = link_to 'Cancel', step_trades_path

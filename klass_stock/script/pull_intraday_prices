@@ -1,0 +1,6 @@
+#! /bin/bash
+
+source ~/.rvm/scripts/rvm
+cd /media/sda5/projects/rails/klass_stock
+rvm use ruby-1.9.3-p392@klass_stock_rails
+rake self:set:pull_intraday_prices >>tmp/set.log 2>&1

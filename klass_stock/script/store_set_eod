@@ -1,0 +1,17 @@
+#!/bin/bash
+
+if [ -z $1 ]; then exit 0; fi
+
+FILENAME="set-archive_EOD_LAST.zip"
+
+cd /tmp
+wget ftp://siamchart.com/$FILENAME
+unzip $FILENAME
+cp E\:/SET-ARCHIVE/EOD/set-history_EOD_$1.csv .
+
+cd /media/sda5/projects/rails/klass_stock
+time RAILS_ENV=production rake self:extract_eod_csv[/tmp/set-history_EOD_$1.csv]
+
+#mv /tmp/set-history_EOD_$1.csv /home/ss/Desktop/
+rm /tmp/set-history_EOD_$1.csv
+rm -rf /tmp/E\: /tmp/$FILENAME

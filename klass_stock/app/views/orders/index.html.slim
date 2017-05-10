@@ -1,0 +1,26 @@
+h2 Orders
+
+div class="v-item"
+  = link_to 'Create a new order', new_portfolio_order_path(params[:portfolio_id]), :class => 'btn'
+
+- unless @orders.empty?
+  table class="table table-bordered table-condensed table-striped" style="width:80%;"
+    tr
+      th Symbol
+      th style="width:25%" DateTime
+      th Price
+      th Volume
+      th Side
+
+    - @orders.each do |order|
+      tr
+        td = link_to order.symbol, portfolio_order_path(order.portfolio_id, order.symbol)
+        td = order.datetime
+        td = order.price
+        td = order.volume
+        td = order.side
+
+  = paginate @pages
+
+- else
+  p There are no orders.

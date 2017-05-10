@@ -1,0 +1,22 @@
+= form_for order, :url => url, :html => {:class => 'form-inline'} do |f|
+  div.inline-item
+    span
+      label.radio
+        = f.radio_button :side, 'B'
+        = f.label 'side_b', 'Buy'
+    span
+      label.radio
+        = f.radio_button :side, 'S'
+        = f.label 'side_s', 'Sell'
+    span
+      = f.text_field :symbol, :class => 'input-small symbol', :placeholder => 'Symbol'
+    span
+      = f.text_field :datetime, :class => 'input-medium', :placeholder => 'DateTime'
+    span
+      = f.text_field :price, :class => 'input-mini', :placeholder => 'Price'
+    span
+      = f.text_field :volume, :class => 'input-mini', :placeholder => 'Volume'
+    span
+      = f.submit 'Save', :class => 'btn btn-success'
+    span
+      = link_to 'Cancel', portfolio_orders_path(params[:portfolio_id])

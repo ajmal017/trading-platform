@@ -1,0 +1,3 @@
+[submodule "vendor/gems/set_scraper"]
+	path = vendor/gems/set_scraper
+	url = ssh://git@bitbucket.org/tonkla/set_scraper.git

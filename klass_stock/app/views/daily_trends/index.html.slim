@@ -1,0 +1,25 @@
+h2 Daily Trends: #{@date}
+
+h3 Uptrends
+div class="trend"
+  - @uptrends.each_with_index do |trend, index|
+    div class="quote alert-success"
+      div.s = link_to trend[:symbol], show_chart_path(trend[:symbol])
+      - trend[:ma].each do |k, v|
+        div.l #{k}: #{'%.2f' % v}
+
+h3 Downtrends
+div class="trend"
+  - @downtrends.each_with_index do |trend, index|
+    div class="quote alert-error"
+      div.s = link_to trend[:symbol], show_chart_path(trend[:symbol])
+      - trend[:ma].each do |k, v|
+        div.l #{k}: #{'%.2f' % v}
+
+h3 Sideways
+div class="trend"
+  - @sideways.each_with_index do |trend, index|
+    div class="quote alert-warning"
+      div.s = link_to trend[:symbol], show_chart_path(trend[:symbol])
+      - trend[:ma].each do |k, v|
+        div.l #{k}: #{'%.2f' % v}

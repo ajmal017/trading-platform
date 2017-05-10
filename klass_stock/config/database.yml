@@ -1,0 +1,26 @@
+development:
+  adapter: postgresql
+  encoding: unicode
+  database: klass_stock_dev
+  host: localhost
+  pool: 5
+  username: root
+  password: root
+
+# test:
+#   adapter: postgresql
+#   encoding: unicode
+#   database: klass_stock_test
+#   host: localhost
+#   pool: 5
+#   username: root
+#   password: root
+
+production:
+  adapter: postgresql
+  encoding: unicode
+  database: klass_stock
+  host: localhost
+  pool: 5
+  username: root
+  password: root

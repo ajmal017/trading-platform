@@ -1,0 +1,85 @@
+h2 Monitored Securities
+
+= form_tag monitored_securities_path, :class => 'form-inline' do
+  table
+    tr
+      - if @security
+        td
+          = text_field_tag :new_symbol, @security.symbol, :class => 'input-medium symbol', :placeholder => 'Symbol'
+          = hidden_field_tag :symbol, @security.symbol
+        td
+          = text_field_tag :last_trading_date, @security.last_trading_date, :class => 'input-medium', :placeholder => 'Last Trading Date'
+        td class="checkbox"
+          = check_box_tag :s1, 'true', @security.s1
+          = label_tag :s1, 'Spread'
+        td class="checkbox"
+          = check_box_tag :s2, 'true', @security.s2
+          = label_tag :s2, 'Zone'
+        td class="checkbox"
+          = check_box_tag :s3, 'true', @security.s3
+          = label_tag :s3, 'MA'
+        td
+          = submit_tag 'Update', :class => 'btn btn-success'
+
+      - else
+        td
+          = text_field_tag :symbol, nil, :class => 'input-medium symbol', :placeholder => 'Symbol'
+        td
+          = text_field_tag :last_trading_date, nil, :class => 'input-medium', :placeholder => 'Last Trading Date'
+        td class="checkbox"
+          = check_box_tag :s1, 'true', false
+          = label_tag :s1, 'Spread'
+        td class="checkbox"
+          = check_box_tag :s2, 'true', false
+          = label_tag :s2, 'Zone'
+        td class="checkbox"
+          = check_box_tag :s3, 'true', false
+          = label_tag :s3, 'MA'
+        td
+          = submit_tag 'Add', :class => 'btn btn-success'
+
+
+- unless @securities.empty?
+  table class="table table-bordered table-condensed table-striped" style="width:55%"
+    tr
+      th style="width:25%" Symbol
+      th LTD
+      th Spread
+      th Zone
+      th MA
+      th style="width:18%"
+    - @securities.each do |s|
+      - if s.active?
+        tr
+          td = s.symbol
+          td = s.last_trading_date
+          td
+            - if s.s1
+              i class="icon icon-ok"
+          td
+            - if s.s2
+              i class="icon icon-ok"
+          td
+            - if s.s3
+              i class="icon icon-ok"
+          td
+            = link_to 'Edit', "/monitored-securities?symbol=#{s.symbol}"
+            = ' / '
+            = link_to 'Deact', "/monitored-securities?symbol=#{s.symbol}", :method => 'delete'
+      - else
+        tr class="inactive"
+          td
+            = s.symbol
+          td
+            = s.last_trading_date
+          td
+            - if s.s1
+              i class="icon icon-ok"
+          td
+            - if s.s2
+              i class="icon icon-ok"
+          td
+            - if s.s3
+              i class="icon icon-ok"
+          td
+            = link_to 'Activate', "/monitored-securities?symbol=#{s.symbol}", :method => 'post'

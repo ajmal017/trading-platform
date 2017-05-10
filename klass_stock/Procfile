@@ -1,0 +1,2 @@
+web1: thin start -e production -p 4000
+web2: thin start -e production -p 4001 --ssl --ssl-key-file lib/ssl/server.key --ssl-cert-file lib/ssl/server.crt

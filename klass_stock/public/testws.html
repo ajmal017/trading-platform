@@ -1,0 +1,53 @@
+<html>
+  <head>
+  	<title>Test WebSocket</title>
+	</head>
+	<body>
+		<form>
+			<span>
+				<input id="buy" type="radio" value="buy" name="side" />
+				<label for="buy">Buy</label>
+			</span>
+			<span>
+				<input id="sell" type="radio" value="sell" name="side" />
+				<label for="sell">Sell</label>
+			</span>
+			<span>
+				<label for="symbol">Symbol</label>
+				<input type="text" name="symbol" id="symbol" />
+			</span>
+			<span>
+				<label for="volume">Volume</label>
+				<input type="text" name="volume" id="volume" />
+			</span>
+			<span>
+				<label for="price">Price</label>
+				<input type="text" name="price" id="price" />
+			</span>
+			<span>
+				<label for="pin">Pin</label>
+				<input type="text" name="pin" id="pin" />
+			</span>
+			<span>
+				<input type="button" value="Submit" id="submit" onclick="javascript:onSubmit();" />
+				<input type="button" value="Clear" id="clear" onclick="javascript:onClear();" />
+			</span>
+		</form>
+		<script>
+			function onSubmit() {
+				if (confirm('Are you sure?')) {
+					console.log('Submited');
+				  if (alert('Completed')) {
+				  	console.log('Closed')
+				  }
+				} else {
+					console.log('Cancelled');
+				}
+			}
+
+			function onClear() {
+				window.location.reload();
+			}
+		</script>
+	</body>
+</html>

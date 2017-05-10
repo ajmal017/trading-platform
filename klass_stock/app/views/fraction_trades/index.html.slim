@@ -1,0 +1,62 @@
+h2 Fraction Trades
+
+- if flash[:notice]
+  div class="alert alert-success"
+    = flash[:notice]
+
+= form_tag fraction_trades_path, :class => 'form-inline' do
+  div.inline-item
+    span.first = text_field_tag :symbol, nil, {:class => 'symbol input-medium', :placeholder => 'Symbol'}
+    span = submit_tag 'Add', :class => 'btn btn-success'
+
+- unless @fraction_trades.empty?
+  table class="table table-bordered table-condensed table-striped" style="width:70%"
+    tr
+      th style="width:25%" Symbol
+      th Volume
+      th F1
+      th F2
+      th F3
+      th F4
+      th F5
+      th F6
+      th F7
+      th F8
+      th F9
+      th F10
+      th
+    - @fraction_trades.each do |fraction|
+      tr
+        td = fraction.symbol
+        td = fraction.volume
+        td
+          - if fraction.f1
+            i class="icon icon-ok"
+        td
+          - if fraction.f2
+            i class="icon icon-ok"
+        td
+          - if fraction.f3
+            i class="icon icon-ok"
+        td
+          - if fraction.f4
+            i class="icon icon-ok"
+        td
+          - if fraction.f5
+            i class="icon icon-ok"
+        td
+          - if fraction.f6
+            i class="icon icon-ok"
+        td
+          - if fraction.f7
+            i class="icon icon-ok"
+        td
+          - if fraction.f8
+            i class="icon icon-ok"
+        td
+          - if fraction.f9
+            i class="icon icon-ok"
+        td
+          - if fraction.f10
+            i class="icon icon-ok"
+        td = link_to 'Edit', show_fraction_trade_path(fraction.symbol)

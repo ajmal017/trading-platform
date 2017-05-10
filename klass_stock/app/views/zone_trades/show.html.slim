@@ -1,0 +1,26 @@
+h2 Zone Trade
+
+- if flash[:alert]
+  div class="alert alert-error"
+    = flash[:alert]
+
+= form_tag show_zone_trade_path(@zone_trade.symbol), :class => 'form-inline' do
+  table style="width:47%;margin-bottom:15px"
+    tr
+      th Symbol
+      th Volume
+      th Available
+      th Ref.Sell
+      th
+    tr
+      td = text_field_tag :new_symbol, @zone_trade.symbol, :class => 'symbol input-medium', :placeholder => 'Symbol'
+      td = text_field_tag :volume, @zone_trade.volume, :class => 'span1', :placeholder => 'Volume'
+      td = text_field_tag :available, @zone_trade.available, :class => 'span1', :placeholder => 'Available'
+      td = text_field_tag :ref_sell, @zone_trade.ref_sell, :class => 'span1', :placeholder => 'Ref. Sell'
+      td class="checkbox"
+        = check_box_tag :active, 'true', @zone_trade.active
+        = label_tag :active
+
+  div.inline-item
+    span.first = submit_tag "Update", :class => 'btn btn-success'
+    span = link_to 'Cancel', zone_trades_path

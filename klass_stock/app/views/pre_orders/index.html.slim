@@ -1,0 +1,42 @@
+h2 Pre-Orders
+
+- if flash[:notice]
+  div class="alert alert-success"
+    = flash[:notice]
+
+= form_for @pre_order, :url => pre_orders_path, :html => {:class => 'form-inline'} do |f|
+  div.inline-item
+    - unless @pre_order.new_record?
+      = f.hidden_field :id
+    span.first
+      label.radio
+        = f.radio_button :side, 'B'
+        = f.label 'side_b', 'Buy'
+    span
+      label.radio
+        = f.radio_button :side, 'S'
+        = f.label 'side_s', 'Sell'
+    span = f.text_field :symbol, :class => 'input-medium symbol', :placeholder => 'Symbol'
+    span = f.text_field :price, :class => 'input-mini', :placeholder => 'Price'
+    span = f.text_field :volume, :class => 'input-mini', :placeholder => 'Volume'
+    span = f.submit 'Save', :class => 'btn btn-success'
+    span = link_to 'Cancel', pre_orders_path
+
+- unless @pre_orders.empty?
+  table class="table table-bordered table-condensed table-striped" style="width:60%"
+    tr
+      th Symbol
+      th Side
+      th Price
+      th Volume
+      th style="width: 18%"
+    - @pre_orders.each do |order|
+      tr
+        td = order.symbol
+        td = order.side
+        td = '%.2f' % order.price
+        td = number_with_delimiter(order.volume, :delimiter => ',')
+        td
+          = link_to 'Edit', "#{pre_orders_path}?id=#{order.id}"
+          = ' / '
+          = link_to 'Delete', "#{pre_orders_path}?id=#{order.id}", :data => {method: 'delete', :confirm => 'Are you sure?'}

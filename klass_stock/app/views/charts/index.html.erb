@@ -1,0 +1,26 @@
+<h3>SET50</h3>
+<table class="table table-bordered table-condensed">
+  <% @set50_stocks.each_with_index do |stock, index| %>
+    <% if index % 10 == 0 %><tr><% end %>
+      <td width="10%"><%= link_to stock.symbol, show_chart_path(stock.symbol) %></td>
+    <% if index - 9 % 10 == 0 %></tr><% end %>
+  <% end %>
+</table>
+
+<h3>SET100</h3>
+<table class="table table-bordered table-condensed">
+  <% @set100_stocks.each_with_index do |stock, index| %>
+    <% if index % 10 == 0 %><tr><% end %>
+      <td width="10%"><%= link_to stock.symbol, show_chart_path(stock.symbol) %></td>
+    <% if index - 9 % 10 == 0 %></tr><% end %>
+  <% end %>
+</table>
+
+<h3>SETHD</h3>
+<table class="table table-bordered table-condensed">
+  <% @sethd_stocks.each_with_index do |stock, index| %>
+    <% if index % 10 == 0 %><tr><% end %>
+      <td width="10%"><%= link_to stock.symbol, show_chart_path(stock.symbol) %></td>
+    <% if index - 9 % 10 == 0 %></tr><% end %>
+  <% end %>
+</table>

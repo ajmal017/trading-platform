@@ -1,0 +1,118 @@
+h1 = "Portfolio: #{@portfolio.name}"
+
+div.inline-item
+  span.first
+    i class="icon icon-circle-arrow-right"
+    = link_to 'Edit', edit_portfolio_path(@portfolio)
+  span
+    i class="icon icon-circle-arrow-right inline-item"
+    = link_to 'List all orders', portfolio_orders_path(@portfolio)
+  span
+    i class="icon icon-circle-arrow-right inline-item"
+    = link_to 'Create a new order', new_portfolio_order_path(@portfolio)
+
+h3 Performance
+
+table class="table table-bordered"
+  - portfolio = PortfolioDecorator.new(@_portfolio)
+  tr
+    th Net Buy
+    th Net Profit
+    th %Profit
+    th Gross Loss
+    th %Loss
+    th Deals
+    th Win
+    th Loss
+  tr
+    td = portfolio.net_buy
+    td = portfolio.net_profit
+    td = portfolio.percent_profit
+    td = portfolio.gross_loss
+    td = portfolio.percent_loss
+    td = portfolio.deals_count
+    td = portfolio.win
+    td = portfolio.loss
+
+- unless @performances.empty?
+  table class="table table-bordered table-condensed table-striped"
+    tr
+      th style="width:10%" Year
+      th Net Buy
+      th Net Profit
+      th %Profit
+      th Gross Loss
+      th %Loss
+      th Deals
+      th style="width:13%" Win
+      th style="width:13%" Loss
+    - @performances.each do |pfm|
+      - pfm = PortfolioDecorator.new(pfm)
+      tr
+        td = pfm.year
+        td.right = pfm.net_buy
+        td.right = pfm.net_profit
+        td.right = pfm.percent_profit
+        td.right = pfm.gross_loss
+        td.right = pfm.percent_loss
+        td.right = pfm.deals_count
+        td.right = pfm.win
+        td.right = pfm.loss
+
+h3 Deals
+- unless @deals.empty?
+  table class="table table-bordered table-condensed table-striped"
+    tr
+      th Symbol
+      th Bought
+      th Cost
+      th Sold
+      th Price
+      th Volume
+      th
+        span data-toggle="tooltip" title="included trading fee"
+          | % P/L<span style="color:red">*</span>
+      th style="width:11%"
+        span data-toggle="tooltip" title="included trading fee"
+          | Real. P/L<span style="color:red">*</span>
+    - @deals.each do |deal|
+      tr
+        td = deal.symbol
+        td = deal.bought_at
+        td = deal.bought_price
+        td = deal.sold_at
+        td = deal.sold_price
+        td = deal.volume
+        td = deal.percent_pl
+        td.right = deal.realized_pl
+
+  - if @portfolio.deals.size > 10
+    div = link_to 'Show more »', deals_portfolio_path
+
+- else
+  div Threre are no deals.
+
+h3 In Hand Securities
+- unless @securities.empty?
+  table class="table table-bordered" style="width:60%;"
+    tr
+      th Symbol
+      th Volume
+      th Amount
+      th
+        span data-toggle="tooltip" title="included trading fee"
+          | Avg. Price<span style="color:red">*</span>
+    - @securities.each do |s|
+      tr
+        td = s.symbol
+        td = s.sum_volume
+        td = s.sum_price
+        td = s.average_price
+- else
+  div There are no available securities.
+
+
+javascript:
+  (function(){
+    $("[data-toggle='tooltip']").tooltip();
+  })();

@@ -1,0 +1,48 @@
+- unless @portfolios.empty?
+  table.table.table-bordered.table-hover
+    tr
+      th Portfolio
+      th
+        span data-toggle="tooltip" title="Net Profit/Loss"
+          | %Profit<span style="color:red">*</span>
+      th
+        span data-toggle="tooltip" title="Gross Loss"
+          | %Loss<span style="color:red">*</span>
+      th Deals
+      th Win
+      th Loss
+      th style="width:20%"
+    - @portfolios.each do |portfolio|
+      - portfolio = PortfolioDecorator.new(portfolio)
+      tr
+        td
+          - if portfolio.active?
+            = link_to portfolio.name, portfolio_path(portfolio.id)
+          - else
+            = portfolio.name
+        td = portfolio.percent_profit
+        td = portfolio.percent_loss
+        td = portfolio.deals_count
+        td = portfolio.win
+        td = portfolio.loss
+        td
+          - if portfolio.active?
+            = link_to 'edit', edit_portfolio_path(portfolio.id)
+            = ' / '
+          - if portfolio.active?
+            = link_to 'disable', disable_portfolio_path(portfolio.id)
+          - else
+            = link_to 'enable', enable_portfolio_path(portfolio.id)
+          = ' / '
+          = link_to 'delete', portfolio_path(portfolio.id), :method => :delete, :data => {:confirm => 'It will be deleted. Are you sure?'}
+
+  = paginate @portfolios
+
+div
+  = link_to 'Create a new portfolio', new_portfolio_path, :class => 'btn btn-default'
+
+
+javascript:
+  (function(){
+    $("[data-toggle='tooltip']").tooltip();
+  })();

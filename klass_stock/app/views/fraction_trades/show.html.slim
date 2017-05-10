@@ -1,0 +1,50 @@
+h2 Fraction Trade
+
+- if flash[:alert]
+  div class="alert alert-error"
+    = flash[:alert]
+
+= form_tag show_fraction_trade_path(@fraction_trade.symbol), :class => 'form-inline' do
+
+  table style="width:85%;margin-bottom:15px"
+    tr
+      td = text_field_tag :new_symbol, @fraction_trade.symbol, :class => 'symbol input-medium', :placeholder => 'Symbol'
+      td = text_field_tag :volume, @fraction_trade.volume, :class => 'input-small', :placeholder => 'Volume'
+      td class="checkbox"
+        = check_box_tag :f1, true, @fraction_trade.f1
+        = label_tag :f1
+      td class="checkbox"
+        = check_box_tag :f2, true, @fraction_trade.f2
+        = label_tag :f2
+      td class="checkbox"
+        = check_box_tag :f3, true, @fraction_trade.f3
+        = label_tag :f3
+      td class="checkbox"
+        = check_box_tag :f4, true, @fraction_trade.f4
+        = label_tag :f4
+      td class="checkbox"
+        = check_box_tag :f5, true, @fraction_trade.f5
+        = label_tag :f5
+      td class="checkbox"
+        = check_box_tag :f6, true, @fraction_trade.f6
+        = label_tag :f6
+      td class="checkbox"
+        = check_box_tag :f7, true, @fraction_trade.f7
+        = label_tag :f7
+      td class="checkbox"
+        = check_box_tag :f8, true, @fraction_trade.f8
+        = label_tag :f8
+      td class="checkbox"
+        = check_box_tag :f9, true, @fraction_trade.f9
+        = label_tag :f9
+      td class="checkbox"
+        = check_box_tag :f10, true, @fraction_trade.f10
+        = label_tag :f10
+      td style="width:30px"
+      td class="checkbox"
+        = check_box_tag :active, 'true', @fraction_trade.active
+        = label_tag :active
+
+  div.inline-item
+    span.first = submit_tag "Update", :class => 'btn btn-success'
+    span = link_to 'Cancel', fraction_trades_path

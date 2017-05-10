@@ -1,0 +1,12 @@
+ul.breadcrumb
+  li
+    i class="icon icon-home"
+    = link_to 'Launchpad', launchpad_path
+  - if defined? @breadcrumbs
+    - @breadcrumbs.each_with_index do |bc, idx|
+      li
+        span »
+      - if (idx + 1) == @breadcrumbs.size
+        li.active = bc[0]
+      - else
+        li = link_to bc[0], bc[1]

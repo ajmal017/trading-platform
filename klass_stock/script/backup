@@ -1,0 +1,5 @@
+#!/bin/bash
+
+pg_dump -U root -h localhost -a -O -t portfolios -t orders -t deals -t in_hand_securities -t monitored_securities -t step_trades -t fraction_trades -t zone_trades -t pre_orders klass_stock | gzip > backup/klass_stock-`date +%Y%m%d`.sql.gz
+
+scp -P2699 backup/klass_stock-`date +%Y%m%d`.sql.gz ss@e2:sync/

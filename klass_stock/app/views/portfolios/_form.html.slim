@@ -1,0 +1,13 @@
+= form_for portfolio, :url => url, :html => {:class => 'form-horizontal'} do |f|
+
+  div.form-group
+    = f.label :name
+    = f.text_field :name
+
+  div.form-group
+    = f.submit :class => 'btn btn-default'
+    span.inline-item
+      - if portfolio.new_record?
+        = link_to 'Cancel', portfolios_path
+      - else
+        = link_to 'Cancel', portfolio_path(portfolio)

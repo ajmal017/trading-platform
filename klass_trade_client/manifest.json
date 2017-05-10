@@ -1,0 +1,10 @@
+{
+  "manifest_version": 2,
+  "name": "KlassTrade Client",
+  "version": "0.0.1",
+  "description": "The KlassTrade's client that acts as trader's hands",
+  "content_scripts": [{
+  	"matches": ["https://*.settrade.com/realtime/fastorder/fastorder.jsp?platform=mm"],
+  	"js": ["jquery-2.1.1.min.js", "content_script.js"]
+  }]
+}

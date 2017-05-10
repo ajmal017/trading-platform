@@ -1,0 +1,18 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    ansi (1.4.3)
+    mini_portile (0.6.0)
+    minitest (4.7.5)
+    nokogiri (1.6.3.1)
+      mini_portile (= 0.6.0)
+    turn (0.9.7)
+      ansi
+      minitest (~> 4)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  nokogiri (~> 1.6.3)
+  turn

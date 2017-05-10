@@ -1,0 +1,26 @@
+h2 Zone Trades
+
+- if flash[:notice]
+  div class="alert alert-success"
+    = flash[:notice]
+
+= form_tag zone_trades_path, :class => 'form-inline' do
+  div.inline-item
+    span.first = text_field_tag :symbol, nil, {:class => 'symbol input-medium', :placeholder => 'Symbol'}
+    span = submit_tag 'Add', :class => 'btn btn-success'
+
+- unless @zone_trades.empty?
+  table class="table table-bordered table-condensed table-striped" style="width:55%"
+    tr
+      th Symbol
+      th Volume
+      th Available
+      th Ref. Sell
+      th style="width:10%"
+    - @zone_trades.each do |zone|
+      tr
+        td = zone.symbol
+        td = number_with_delimiter(zone.volume, delimiter: ',')
+        td = number_with_delimiter(zone.available, delimiter: ',')
+        td = '%.2f' % zone.ref_sell
+        td = link_to 'Edit', show_zone_trade_path(zone.symbol)
